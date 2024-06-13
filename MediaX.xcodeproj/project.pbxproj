@@ -11,6 +11,9 @@
 		530387CD2C1A3C1200415079 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530387CC2C1A3C1200415079 /* ContentView.swift */; };
 		530387CF2C1A3C1400415079 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 530387CE2C1A3C1400415079 /* Assets.xcassets */; };
 		530387D22C1A3C1400415079 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 530387D12C1A3C1400415079 /* Preview Assets.xcassets */; };
+		530387DF2C1A46F700415079 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530387DE2C1A46F700415079 /* SplashView.swift */; };
+		530387E12C1A512D00415079 /* OnBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530387E02C1A512D00415079 /* OnBoardView.swift */; };
+		530387E32C1A539600415079 /* OnBoardImgAndText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530387E22C1A539600415079 /* OnBoardImgAndText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		530387CC2C1A3C1200415079 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		530387CE2C1A3C1400415079 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		530387D12C1A3C1400415079 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		530387DE2C1A46F700415079 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		530387E02C1A512D00415079 /* OnBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardView.swift; sourceTree = "<group>"; };
+		530387E22C1A539600415079 /* OnBoardImgAndText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardImgAndText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +57,10 @@
 		530387C92C1A3C1200415079 /* MediaX */ = {
 			isa = PBXGroup;
 			children = (
-				530387CA2C1A3C1200415079 /* MediaXApp.swift */,
+				530387D82C1A3C9000415079 /* App */,
+				530387D92C1A3CC800415079 /* Core */,
+				530387DB2C1A3CFB00415079 /* Extensions */,
+				530387DA2C1A3CD300415079 /* Models */,
 				530387CC2C1A3C1200415079 /* ContentView.swift */,
 				530387CE2C1A3C1400415079 /* Assets.xcassets */,
 				530387D02C1A3C1400415079 /* Preview Content */,
@@ -65,6 +74,54 @@
 				530387D12C1A3C1400415079 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		530387D82C1A3C9000415079 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				530387CA2C1A3C1200415079 /* MediaXApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		530387D92C1A3CC800415079 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				530387DD2C1A447400415079 /* OnBoard */,
+				530387DC2C1A444900415079 /* Components */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		530387DA2C1A3CD300415079 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		530387DB2C1A3CFB00415079 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		530387DC2C1A444900415079 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				530387E22C1A539600415079 /* OnBoardImgAndText.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		530387DD2C1A447400415079 /* OnBoard */ = {
+			isa = PBXGroup;
+			children = (
+				530387DE2C1A46F700415079 /* SplashView.swift */,
+				530387E02C1A512D00415079 /* OnBoardView.swift */,
+			);
+			path = OnBoard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +194,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				530387E12C1A512D00415079 /* OnBoardView.swift in Sources */,
 				530387CD2C1A3C1200415079 /* ContentView.swift in Sources */,
 				530387CB2C1A3C1200415079 /* MediaXApp.swift in Sources */,
+				530387DF2C1A46F700415079 /* SplashView.swift in Sources */,
+				530387E32C1A539600415079 /* OnBoardImgAndText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
