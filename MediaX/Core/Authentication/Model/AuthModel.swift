@@ -19,7 +19,7 @@ enum UserState {
 }
 
 class AuthModel: ObservableObject, Observable {
-    @Published var user: User?
+    @Published var user: newUser?
     @Published var authState: AuthState = .signedOut
     @Published var userState: UserState = .oldUser
     @Published var userSession: String? = nil
@@ -45,12 +45,10 @@ class AuthModel: ObservableObject, Observable {
     }
 }
 
-struct User: Identifiable {
+struct newUser: Identifiable {
     var id = UUID()
     var fullname: String
+    var username: String
     var email: String
     var password: String
-//    var followers: Int
-//    var following: Int
-//    var posts: Int
 }

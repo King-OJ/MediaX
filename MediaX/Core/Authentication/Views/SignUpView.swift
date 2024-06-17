@@ -10,6 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     
     @State private var name = ""
+    @State private var username = ""
     @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
@@ -47,9 +48,14 @@ struct SignUpView: View {
                         //input container
                         VStack(spacing: 16, content: {
                             
-                            InputAndIconView(value: name, placeHolder: "Enter your fullname", icon: "person")
+                            FloatingTextField(placeHolderText: "Name", value: name)
                             
-                            InputAndIconView(value: email, placeHolder: "Enter your email", icon: "message")
+                            FloatingTextField(placeHolderText: "Username", value: username)
+                            
+                            FloatingTextField(placeHolderText: "Email", value: email)
+                            
+                            
+                            FloatingTextField(placeHolderText: "Password", value: password)
                             
                             InputAndIconView(value: password, placeHolder: "Enter your password", icon: "lock", type: "password")
                             
@@ -97,9 +103,9 @@ struct SignUpView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 40)
-                    .frame(maxWidth: .infinity, maxHeight: 700)
+                    .frame(maxWidth: .infinity, maxHeight: 750)
                     .background(.white)
-                    .clipShape(.rect(topLeadingRadius: 50, topTrailingRadius: 50, style: .continuous)
+                    .clipShape(.rect(topLeadingRadius: 30, topTrailingRadius: 30, style: .continuous)
                     )
                     
                 }

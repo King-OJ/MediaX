@@ -8,8 +8,28 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @StateObject var viewModel = MockData()
+    
     var body: some View {
-        Text("Home View")
+        NavigationStack {
+            ScrollView {
+            
+                LazyVStack(spacing:20,content: {
+                    ForEach(viewModel.posts) { post in
+                        PostView(post: post)
+                    }
+                })
+                
+            }.scrollIndicators(.hidden)
+                .padding(.horizontal)
+                .background {
+                    Color("greyish")
+                }
+        
+            
+        }
+       
     }
 }
 

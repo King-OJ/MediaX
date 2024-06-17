@@ -31,6 +31,7 @@ struct OnBoardView: View {
                     
                 }
                 .tabViewStyle(.page)
+                .padding(.bottom)
                 .ignoresSafeArea()
                 
               
@@ -71,11 +72,14 @@ struct OnBoardView: View {
                 .foregroundStyle(.white)
                 .padding()
                 
+                
             }
             .background(.white)
             
             
+            
         }.tint(.white)
+        
                 
     }
 }

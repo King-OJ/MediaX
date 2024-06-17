@@ -37,12 +37,12 @@ struct CTAbutton: View {
             .foregroundStyle(.white)
             .font(.title3)
             .fontWeight(.bold)
-            .frame(height: 64)
+            .frame(height: 54)
             .padding(.horizontal)
             .background{
                 Color("primary500")
             }
-            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .clipShape(RoundedRectangle(cornerRadius: 6))
             
             .onTapGesture(perform: {
                 guard let action = action else { return }
@@ -67,12 +67,12 @@ struct CTAbutton: View {
             .foregroundStyle(.white)
             .font(.title3)
             .fontWeight(.bold)
-            .frame(height: 64)
+            .frame(height: 54)
             .padding(.horizontal)
             .background{
                 Color("primary500")
             }
-            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .clipShape(RoundedRectangle(cornerRadius: 6))
             
         }
        

@@ -20,7 +20,7 @@ struct OnBoardImgAndText: View {
                 Image(image)
                     .resizable()
                     .frame(width:400, height: 700)
-                    .scaledToFit()
+                    .scaledToFill()
                     .overlay {
                         Color(.black)
                             .opacity(0.3)
@@ -58,7 +58,7 @@ struct OnBoardImgAndText: View {
             
             
         }
-        .clipShape(RoundedRectangle(cornerRadius:50))
+        .clipShape(RoundedRectangle(cornerRadius:30))
         
     }
 }
