@@ -21,7 +21,7 @@ enum UserState {
 class AuthModel: ObservableObject, Observable {
     @Published var user: newUser?
     @Published var authState: AuthState = .signedOut
-    @Published var userState: UserState = .oldUser
+    @Published var userState: UserState = .newUser
     @Published var userSession: String? = nil
     
 //    init(user: User? = nil, authState: AuthState, userState: UserState, userSession: String? = nil) {
@@ -31,7 +31,10 @@ class AuthModel: ObservableObject, Observable {
 //        self.userSession = nil
 //    }
     
-    
+    func oldUserUI(){
+        print("old user")
+        self.userState = .oldUser
+    }
     
     func loginUser(){
         print("login user")

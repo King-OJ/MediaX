@@ -7,13 +7,14 @@
 
 import SwiftUI
 
+
+
 struct SignUpView: View {
     
     @State private var name = ""
     @State private var username = ""
     @State private var email = ""
     @State private var password = ""
-    @State private var confirmPassword = ""
     
     @EnvironmentObject var authViewModel: AuthModel
     
@@ -46,20 +47,18 @@ struct SignUpView: View {
                         }
                         
                         //input container
-                        VStack(spacing: 16, content: {
+                        VStack(spacing: 20, content: {
                             
-                            FloatingTextField(placeHolderText: "Name", value: name)
+                            FloatingTextField(placeHolderText: "Name",inputType: .name,icon:"person", value: name)
                             
-                            FloatingTextField(placeHolderText: "Username", value: username)
+                            FloatingTextField(placeHolderText: "Username",inputType: .username, icon:"person.circle", value: username)
                             
-                            FloatingTextField(placeHolderText: "Email", value: email)
+                            FloatingTextField(placeHolderText: "Email",inputType: .email, icon:"envelope", value: email)
                             
                             
-                            FloatingTextField(placeHolderText: "Password", value: password)
+                            FloatingTextField(placeHolderText: "Password",inputType: .password, icon:"lock", value: password)
                             
-                            InputAndIconView(value: password, placeHolder: "Enter your password", icon: "lock", type: "password")
-                            
-                            InputAndIconView(value: confirmPassword, placeHolder: "Confirm your password", icon: "lock", type: "password")
+                         
                         })
                         .padding(.vertical)
                         
@@ -68,27 +67,21 @@ struct SignUpView: View {
                             CTAbutton(text: "Create Account", icon: "arrow.right", type: .actionBtn, action: {
                                 authViewModel.signUpUser()
                             })
+                            .background {
+                                Color("primary500")
+                            }
+                            .clipShape(RoundedRectangle(cornerRadius: 6))
+                            
                             HStack {
                                 Text("Already have an account?")
+                               
                                 
-                                if authViewModel.userState == .oldUser {
-                                    Button {
-                                        dismiss()
-                                    } label: {
-                                        Text("Log In")
-                                            .foregroundStyle(Color("primary500"))
-                                            .fontWeight(.semibold)
-                                    }
-
+                                Button("Login") {
+                                    dismiss()
                                 }
-                                else{
-                                    NavigationLink("Log In") {
-                                        SignInView()
-                                            .environmentObject(AuthModel())
-                                    }.foregroundStyle(Color("primary500"))
-                                        .fontWeight(.semibold)
-                                }
-                                
+                                .foregroundStyle(Color("primary500"))
+                                .fontWeight(.semibold)
+                               
                             }
                             .font(.subheadline)
                         }).padding(.bottom)

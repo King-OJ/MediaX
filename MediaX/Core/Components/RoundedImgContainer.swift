@@ -13,10 +13,14 @@ struct RoundedImgContainer: View {
         VStack {
             Image(img)
                 .resizable()
+                .clipShape(Circle())
                 .scaledToFill()
+                
+                
             
             
         }
+        .padding(2)
         .overlay(content: {
             Circle()
                 .stroke(lineWidth: 4)

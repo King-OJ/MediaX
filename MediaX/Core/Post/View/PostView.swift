@@ -11,12 +11,12 @@ struct PostView: View {
     var post: Post
     
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
             //post title
             HStack {
                 HStack {
                     RoundedImgContainer(img: post.postedBy.profileImgUrl)
-                        .frame(width: 50, height: 50)
+                        .frame(width: 40, height: 40)
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text(post.postedBy.fullname)
@@ -24,7 +24,8 @@ struct PostView: View {
                         
                         Text(post.postedBy.occupation)
                             .font(.caption)
-                            .foregroundStyle(.gray)
+                            .foregroundStyle(Color(.systemGray3))
+                            .fontWeight(.semibold)
                     }
                 }
                 
@@ -72,18 +73,20 @@ struct PostView: View {
                     
                     Text("Liked by you and 500 others")
                         .font(.caption)
-                        .fontWeight(.bold)
+                        .fontWeight(.semibold)
                 }
+                .padding(.horizontal, 6)
                 
                 Text(post.title)
-                    .font(.subheadline)
+                    .font(.caption)
+                    .padding(.horizontal, 6)
                     
             })
             
-            //post details
             
         }
-        .padding()
+        .padding(.vertical)
+        .padding(.horizontal,6)
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }

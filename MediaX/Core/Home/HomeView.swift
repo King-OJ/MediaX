@@ -14,15 +14,14 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-            
-                LazyVStack(spacing:20,content: {
+                LazyVStack(spacing:10,content: {
                     ForEach(viewModel.posts) { post in
                         PostView(post: post)
                     }
                 })
                 
             }.scrollIndicators(.hidden)
-                .padding(.horizontal)
+                .padding(.horizontal, 4)
                 .background {
                     Color("greyish")
                 }

@@ -27,23 +27,15 @@ struct OnBoardImgAndText: View {
                 }
                
                 if index != 2 {
-                    NavigationLink {
-                        if authViewModel.authState == .signedIn {
-                            MainTab()
-                                .navigationBarBackButtonHidden()
-                        }
-                        else {
-                            AuthView()
-                                .navigationBarBackButtonHidden()
-                                .environment(authViewModel)
-                        }
-                        
-                    } label: {
+                    Button(action: {
+                        index = 2
+                    }, label: {
                         Text("Skip")
-                    }.fontWeight(.semibold)
-                        .foregroundStyle(.white)
-                        .padding(.trailing,30)
-                        .padding(.top, 40)
+                    })
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.white)
+                    .padding(.trailing,30)
+                    .padding(.top, 40)
                     
                 }
             }

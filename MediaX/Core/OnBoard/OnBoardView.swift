@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OnBoardView: View {
     
+    let screenWidth = UIScreen.main.bounds.size.width
+    
     @StateObject var authViewModel = AuthModel()
     
     @State private var index = 0
@@ -35,24 +37,39 @@ struct OnBoardView: View {
                 .ignoresSafeArea()
                 
               
-                //next button
+                //next buttons
                 VStack {
                     if index == 2 {
-                        NavigationLink {
-                            if authViewModel.authState == .signedIn {
-                                MainTab()
+                        HStack(spacing: 10, content: {
+                            
+                            NavigationLink {
+                                SignUpView()
+                                    .environmentObject(authViewModel)
                                     .navigationBarBackButtonHidden()
+                            } label: {
+                                CTAbutton(text: "Create Account", type: .navBtn)
+                                .frame(maxWidth: screenWidth/2)
+                                .background{
+                                    Color("primary500")
+                                }
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
                             }
-                            else {
-                                AuthView()
+
+                            NavigationLink {
+                                SignInView()
+                                    .environmentObject(authViewModel)
                                     .navigationBarBackButtonHidden()
-                                    .environment(authViewModel)
+                            } label: {
+                                CTAbutton(text: "Log In", type: .navBtn)
+                                .frame(maxWidth: screenWidth/2)
+                                .background{
+                                    Color("primary500")
+                                }
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
                             }
                             
-                        } label: {
-                            CTAbutton(text: "Get Started", icon: "arrow.right", type: .navBtn)
-                        }
-                        
+                           
+                        })
                     }
                     
                     else {
@@ -62,8 +79,12 @@ struct OnBoardView: View {
                                 index += 1;
                             }
                         }, label: {
-                            CTAbutton(text: "Next", icon: "arrow.right", type: .navBtn)
+                            CTAbutton(text: "Next", icon: "arrow.right", type: .actionBtn)
                         })
+                        .background{
+                            Color("primary500")
+                        }
+                        .clipShape(RoundedRectangle(cornerRadius: 6))
                         
                     }
                     
@@ -73,12 +94,14 @@ struct OnBoardView: View {
                 .padding()
                 
                 
+                
+                
             }
             .background(.white)
             
             
             
-        }.tint(.white)
+        }      
         
                 
     }

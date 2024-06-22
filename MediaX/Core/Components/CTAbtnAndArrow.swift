@@ -26,11 +26,12 @@ struct CTAbutton: View {
                 if let text = text {
                     Text(text)
                 }
-        
-                Spacer()
                 
                 if let icon = icon {
-                    Image(systemName: icon)
+                    HStack {
+                        Spacer()
+                        Image(systemName: icon)
+                    }
                 }
                 
             })
@@ -39,11 +40,6 @@ struct CTAbutton: View {
             .fontWeight(.bold)
             .frame(height: 54)
             .padding(.horizontal)
-            .background{
-                Color("primary500")
-            }
-            .clipShape(RoundedRectangle(cornerRadius: 6))
-            
             .onTapGesture(perform: {
                 guard let action = action else { return }
 
@@ -57,10 +53,13 @@ struct CTAbutton: View {
                     Text(text)
                 }
         
-                Spacer()
+                
                 
                 if let icon = icon {
-                    Image(systemName: icon)
+                    HStack {
+                        Spacer()
+                        Image(systemName: icon)
+                    }
                 }
                 
             })
@@ -68,11 +67,6 @@ struct CTAbutton: View {
             .font(.title3)
             .fontWeight(.bold)
             .frame(height: 54)
-            .padding(.horizontal)
-            .background{
-                Color("primary500")
-            }
-            .clipShape(RoundedRectangle(cornerRadius: 6))
             
         }
        
@@ -81,5 +75,5 @@ struct CTAbutton: View {
 }
 
 #Preview {
-    CTAbutton(text: "Get Started", icon: "arrow.right", type: .actionBtn , action: {print("hello")})
+    CTAbutton(text: "Get Started", icon: "arrow.right", type: .navBtn , action: {print("hello")})
 }

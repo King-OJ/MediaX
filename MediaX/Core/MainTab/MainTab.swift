@@ -27,9 +27,10 @@ func onUpdate(_ closure: @escaping () -> Void) -> Binding<Value> {
 
 struct MainTab: View {
     
-//    init() {
-//           UITabBar.appearance().unselectedItemTintColor = UIColor.blue
-//        }
+    init() {
+           UITabBar.appearance().unselectedItemTintColor = UIColor.blue
+        }
+    
     
     var body: some View {
    
@@ -37,8 +38,6 @@ struct MainTab: View {
         
         TabView(selection: $selectedTab) {
             Group {
-                
-                
                 HomeView()
                     .tabItem {
                         selectedTab == .home ?
@@ -47,40 +46,43 @@ struct MainTab: View {
                         Label("", systemImage: "house");
                         
                     }
+                    .onAppear(perform: {
+                        selectedTab = .home
+                    })
                     .tag(Tabs.home)
                 
                 MessagesView()
                     .tabItem {
-                        selectedTab == .chats ?
                         Label("Chats", systemImage: "message")
-                        :
-                        Label("", systemImage: "message");
-                        
                     }
+                    .onAppear(perform: {
+                        selectedTab = .chats
+                    })
                     .tag(Tabs.chats)
                     
                 
                 
                 SearchView()
                     .tabItem {
-                        selectedTab == .search ?
                         Label("Search", systemImage: "magnifyingglass")
-                        :
-                        Label("", systemImage: "magnifyingglass")
                     }
+                    .onAppear(perform: {
+                        selectedTab = .search
+                    })
                     .tag(Tabs.search)
                 
                 ProfileView()
                     .tabItem {
-                        selectedTab == .profile ?
                         Label("Profile", systemImage: "person")
-                        :
-                        Label("", systemImage: "person")
                     }
+                    .onAppear(perform: {
+                        selectedTab = .profile
+                    })
                     .tag(Tabs.profile)
             }
             .toolbarBackground(Color("primary500"), for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)
+            .toolbarColorScheme(.dark, for: .tabBar)
             
         }
         .tint(.white)

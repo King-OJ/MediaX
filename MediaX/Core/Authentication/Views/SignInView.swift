@@ -41,11 +41,12 @@ struct SignInView: View {
                         }
                         
                         //input container
-                        VStack(spacing: 16, content: {
+                        VStack(spacing: 20, content: {
                             
-                            InputAndIconView(value: email, placeHolder: "Enter your email", icon: "message")
+                            FloatingTextField(placeHolderText: "Email", inputType: .email, icon: "envelope", value: email)
                             
-                            InputAndIconView(value: password, placeHolder: "Enter your password", icon: "lock", type: "password")
+                            
+                            FloatingTextField(placeHolderText: "Password",inputType: .password, icon:"lock", value: password)
                             
                         })
                         .padding(.vertical)
@@ -56,27 +57,23 @@ struct SignInView: View {
                                     authViewModel.loginUser()
                                 }
                             )
+                            .background {
+                                Color("primary500")
+                            }
+                            .clipShape(RoundedRectangle(cornerRadius: 6))
                             
                             HStack {
                                 Text("Don't have an account yet?")
                                 
-                                if authViewModel.userState == .newUser {
-                                    Button {
-                                        dismiss()
-                                    } label: {
-                                        Text("Create Account")
-                                            .foregroundStyle(Color("primary500"))
-                                            .fontWeight(.semibold)
-                                    }
-
-                                }
-                                else{
-                                    NavigationLink("Create Account") {
-                                        SignUpView()
-                                            .environmentObject(AuthModel())
-                                    }.foregroundStyle(Color("primary500"))
+                                
+                                Button {
+                                    dismiss()
+                                } label: {
+                                    Text("Create Account")
+                                        .foregroundStyle(Color("primary500"))
                                         .fontWeight(.semibold)
                                 }
+
                                 
                                
 
