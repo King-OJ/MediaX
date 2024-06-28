@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct OnBoardView: View {
-    
-    let screenWidth = UIScreen.main.bounds.size.width
-    
-    @StateObject var authViewModel = AuthModel()
+//    @StateObject var authViewModel = AuthModel()
+//    let screenWidth = UIScreen.main.bounds.size.width
+    @EnvironmentObject var baseViewModel: BaseViewModel
+   
     
     @State private var index = 0
     
@@ -23,10 +23,11 @@ struct OnBoardView: View {
         
         NavigationStack {
             VStack {
+                //onboard tabs
                 TabView(selection: $index) {
                     ForEach(Array(onBoardTabs.enumerated()), id: \.offset){ index,
                         tab in
-                        OnBoardImgAndText(index: $index, authViewModel: authViewModel, image: tab.image, text: tab.text)
+                        OnBoardImgAndText(index: $index, image: tab.image, text: tab.text)
                             .tag(index)
                             .ignoresSafeArea(.container, edges: .top)
                     }
@@ -42,31 +43,32 @@ struct OnBoardView: View {
                     if index == 2 {
                         HStack(spacing: 10, content: {
                             
-                            NavigationLink {
-                                AuthView(actionType: .signUp)
-                                    .environmentObject(authViewModel)
-                                    .navigationBarBackButtonHidden()
+                            Button {
+                                baseViewModel.userFlow = .authentication
+                                   
                             } label: {
-                                CTAbutton(text: "Create Account")
-                                .frame(maxWidth: screenWidth/2)
+                                CTAbutton(text: "Get Started")
+                                    .frame(maxWidth: .infinity)
                                 .background{
                                     Color("primary500")
                                 }
                                 .clipShape(RoundedRectangle(cornerRadius: 6))
                             }
+                            
 
-                            NavigationLink {
-                                AuthView(actionType: .login)
-                                    .environmentObject(authViewModel)
-                                    .navigationBarBackButtonHidden()
-                            } label: {
-                                CTAbutton(text: "Log In")
-                                .frame(maxWidth: screenWidth/2)
-                                .background{
-                                    Color("primary500")
-                                }
-                                .clipShape(RoundedRectangle(cornerRadius: 6))
-                            }
+//                            NavigationLink {
+//                                AuthView()
+//                                    .environmentObject(authViewModel)
+//                                    .navigationBarBackButtonHidden()
+//                                
+//                            } label: {
+//                                CTAbutton(text: "Log In")
+//                                .frame(maxWidth: screenWidth/2)
+//                                .background{
+//                                    Color("primary500")
+//                                }
+//                                .clipShape(RoundedRectangle(cornerRadius: 6))
+//                            }
                             
                            
                         })
@@ -106,6 +108,7 @@ struct OnBoardView: View {
 
 #Preview {
     OnBoardView()
+        .environment(BaseViewModel())
 }
 
 struct Tab {

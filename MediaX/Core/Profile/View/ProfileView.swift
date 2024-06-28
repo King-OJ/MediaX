@@ -25,7 +25,7 @@ struct ProfileView: View {
                     VStack(spacing: 20) {
                         //profile img and names
                         HStack(spacing: 10) {
-                            RoundedImgContainer(img: "profile-img")
+                            RoundedImgContainer(img: "profile-img", padding: 6)
                                 .frame(width: 90, height: 90)
                             
                             VStack(alignment: .leading, spacing: 6) {
@@ -97,6 +97,7 @@ struct ProfileView: View {
                                 LazyHStack(content: {
                                     ForEach(profileImgs.indices, id: \.self) { index in
                                         RoundedImg(imgUrl: profileImgs[index].name)
+                                            .frame(width: 54, height: 54)
                                     }
                                 })
                                 .frame( width: 350, alignment: .center)
@@ -186,7 +187,6 @@ struct RoundedImg: View {
         Image(imgUrl)
             .resizable()
             .scaledToFill()
-            .frame(width: 54, height: 54)
             .clipShape(Circle())
             
     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RoundedImgContainer: View {
     var img: String
+    var padding: Double
     var body: some View {
         VStack {
             Image(img)
@@ -20,7 +21,7 @@ struct RoundedImgContainer: View {
             
             
         }
-        .padding(2)
+        .padding(padding)
         .overlay(content: {
             Circle()
                 .stroke(lineWidth: 4)
@@ -33,5 +34,7 @@ struct RoundedImgContainer: View {
 }
 
 #Preview {
-    RoundedImgContainer(img: "profile-img")
+    RoundedImgContainer(img: "profile-img", padding: 6)
 }
+
+

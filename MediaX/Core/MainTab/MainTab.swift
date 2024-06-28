@@ -18,10 +18,11 @@ private enum Tabs: Hashable {
 
 
 struct MainTab: View {
- 
+    
+    @State private var selectedTab: Tabs = .home
+    
+    
     var body: some View {
-   
-        @State var selectedTab: Tabs = .home
         
         TabView(selection: $selectedTab) {
             Group {
@@ -30,38 +31,49 @@ struct MainTab: View {
                         selectedTab == .home ?
                         Label("Home", systemImage: "house")
                         :
-                        Label("", systemImage: "house");
-                        
+                        Label("", systemImage: "house")
                     }
                     .tag(Tabs.home)
                 
                 MessagesView()
                     .tabItem {
-                        Label("Chats", systemImage: "message")
+                        selectedTab == .chats ?
+                        Label("chats", systemImage: "message")
+                        :
+                        Label("", systemImage: "message")
                     }
                     .tag(Tabs.chats)
                     
                 
-                
+                NavigationStack {
                 SearchView()
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
-                    .tag(Tabs.search)
+                        .navigationTitle("Search")
+                }.tabItem {
+                    selectedTab == .search ?
+                    Label("Search", systemImage: "magnifyingglass")
+                    :
+                    Label("", systemImage: "magnifyingglass")
+                }
+                .tag(Tabs.search)
                 
                 ProfileView()
                     .tabItem {
+                        selectedTab == .profile ?
                         Label("Profile", systemImage: "person")
+                        :
+                        Label("", systemImage: "person")
                     }
                     .tag(Tabs.profile)
             }
-            .toolbarBackground(Color("primary500"), for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)
+            .toolbarBackground(Color("primary500"), for: .tabBar)
             .toolbarColorScheme(.dark, for: .tabBar)
+           
             
             
         }
         .tint(.white)
+        
     }
     
    

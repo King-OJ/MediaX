@@ -17,15 +17,13 @@ struct SignUpView: View {
     @State private var password = ""
     
     @EnvironmentObject var authViewModel: AuthModel
+    @EnvironmentObject var baseViewModel: BaseViewModel
     
     @Environment (\.dismiss) var dismiss
     
     var body: some View {
-        if authViewModel.authState == .signedIn {
-            MainTab()
-        }
-        else {
-            NavigationStack {
+    
+            
                 VStack {
                     Spacer()
                     
@@ -65,8 +63,7 @@ struct SignUpView: View {
                         //actions button
                         VStack(spacing: 14, content: {
                             Button {
-                                authViewModel.signUpUser()
-                            
+                                baseViewModel.userFlow = .mainTab
                             } label: {
                                 CTAbutton(text: "Create Account", icon: "arrow.right")
                                 .background {
@@ -79,16 +76,29 @@ struct SignUpView: View {
                             
                             HStack {
                                 Text("Already have an account?")
-                               
-                                
-                                Button("Login") {
-                                    dismiss()
+                                if authViewModel.userState == .newUser {
+                                    NavigationLink("Login") {
+                                        SignInView()
+                                            .navigationBarBackButtonHidden()
+                                            .environment(authViewModel)
+                                        }
+                                    .foregroundStyle(Color("primary500"))
+                                    .fontWeight(.semibold)
                                 }
-                                .foregroundStyle(Color("primary500"))
-                                .fontWeight(.semibold)
+                                else {
+                                    Button("Login") {
+                                        dismiss()
+                                    }
+                                    .foregroundStyle(Color("primary500"))
+                                    .fontWeight(.semibold)
+                                }
+                                
+                                
+
                                
                             }
                             .font(.subheadline)
+                            
                         }).padding(.vertical)
                         
                         Spacer()
@@ -101,7 +111,7 @@ struct SignUpView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 40)
-                    .frame(minWidth: 350, maxWidth: .infinity, minHeight: 600, maxHeight: 800)
+                    .frame(minWidth: 350, maxWidth: .infinity, minHeight: 600, maxHeight: 700)
                     .background(.white)
                     .clipShape(.rect(topLeadingRadius: 30, topTrailingRadius: 30, style: .continuous)
                     )
@@ -114,14 +124,26 @@ struct SignUpView: View {
                                  .fontWeight(.bold)
                                  .font(.title3)
                          }
-                     }
-                .frame(maxWidth:.infinity, maxHeight: .infinity)
+                    
+                    if authViewModel.userState == .oldUser {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button(action: {
+                                dismiss()
+                            }, label: {
+                                Image(systemName: "chevron.left")
+                            })
+                            .foregroundStyle(.white)
+                            .fontWeight(.bold)
+                            
+                        }
+                    }
+                }
+                .frame(maxWidth:.infinity)
                 .background {
                     Color("primary500")
                 }
                 .ignoresSafeArea()
-            }
-        }
+          
         
     }
 }

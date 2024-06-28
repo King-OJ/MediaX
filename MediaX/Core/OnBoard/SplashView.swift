@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SplashView: View {
+    @EnvironmentObject var baseViewModel: BaseViewModel
     var body: some View {
         
         ZStack(alignment: .bottom) {
@@ -38,6 +39,11 @@ struct SplashView: View {
             Color("primary500")
         }
         .ignoresSafeArea()
+        .onAppear {
+            withAnimation(Animation.linear.delay(0.5)) {
+                baseViewModel.userFlow = .onboarding
+               }
+        }
         
         
 
@@ -47,4 +53,5 @@ struct SplashView: View {
 
 #Preview {
     SplashView()
+        .environment(BaseViewModel())
 }

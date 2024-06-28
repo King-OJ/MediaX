@@ -10,7 +10,6 @@ import SwiftUI
 struct OnBoardImgAndText: View {
     
     @Binding var index: Int
-    var authViewModel: AuthModel
     var image: String
     var text: String
     
@@ -59,5 +58,5 @@ struct OnBoardImgAndText: View {
 }
 
 #Preview {
-    OnBoardImgAndText(index: .constant(1), authViewModel: AuthModel(), image: "profile-img", text: "Welcome to the Fun iChat")
+    OnBoardImgAndText(index: .constant(1), image: "profile-img", text: "Welcome to the Fun iChat")
 }

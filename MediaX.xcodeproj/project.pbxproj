@@ -25,6 +25,8 @@
 		53319AC02C1CB4F40007DC10 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53319ABF2C1CB4F40007DC10 /* MessagesView.swift */; };
 		53319AC42C1CB8620007DC10 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53319AC32C1CB8620007DC10 /* AuthModel.swift */; };
 		53319AC62C1CC1120007DC10 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53319AC52C1CC1120007DC10 /* AuthView.swift */; };
+		53360C252C2F1DAE003CAC8A /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53360C242C2F1DAE003CAC8A /* BaseViewModel.swift */; };
+		53360C272C2F1E34003CAC8A /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53360C262C2F1E34003CAC8A /* BaseView.swift */; };
 		533F45F52C1E2F24008D0886 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533F45F42C1E2F24008D0886 /* PostView.swift */; };
 		533F45F72C1E323F008D0886 /* RoundedImgContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533F45F62C1E323F008D0886 /* RoundedImgContainer.swift */; };
 		53449E042C1F62E300F666C5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53449E032C1F62E300F666C5 /* MockData.swift */; };
@@ -56,6 +58,8 @@
 		53319ABF2C1CB4F40007DC10 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		53319AC32C1CB8620007DC10 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		53319AC52C1CC1120007DC10 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		53360C242C2F1DAE003CAC8A /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		53360C262C2F1E34003CAC8A /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		533F45F42C1E2F24008D0886 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		533F45F62C1E323F008D0886 /* RoundedImgContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImgContainer.swift; sourceTree = "<group>"; };
 		53449E032C1F62E300F666C5 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				53231F762C1BAF7C006B5833 /* Authentication */,
+				53360C212C2F1D30003CAC8A /* Base */,
 				530387DC2C1A444900415079 /* Components */,
 				53319AB22C1CB3900007DC10 /* Home */,
 				53319AB62C1CB3F40007DC10 /* MainTab */,
@@ -241,6 +246,31 @@
 			isa = PBXGroup;
 			children = (
 				53319AC32C1CB8620007DC10 /* AuthModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		53360C212C2F1D30003CAC8A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				53360C232C2F1D65003CAC8A /* Model */,
+				53360C222C2F1D47003CAC8A /* View */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		53360C222C2F1D47003CAC8A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				53360C262C2F1E34003CAC8A /* BaseView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		53360C232C2F1D65003CAC8A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				53360C242C2F1DAE003CAC8A /* BaseViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -372,11 +402,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				53231F7E2C1C07B3006B5833 /* SignInView.swift in Sources */,
+				53360C272C2F1E34003CAC8A /* BaseView.swift in Sources */,
 				53449E0B2C1F64AC00F666C5 /* UserModel.swift in Sources */,
 				53449E072C1F636300F666C5 /* PostModel.swift in Sources */,
 				530387E12C1A512D00415079 /* OnBoardView.swift in Sources */,
 				530387CD2C1A3C1200415079 /* ContentView.swift in Sources */,
 				53449E0D2C1F70BD00F666C5 /* FloatingTextField.swift in Sources */,
+				53360C252C2F1DAE003CAC8A /* BaseViewModel.swift in Sources */,
 				530387CB2C1A3C1200415079 /* MediaXApp.swift in Sources */,
 				53319AC02C1CB4F40007DC10 /* MessagesView.swift in Sources */,
 				53319ABC2C1CB4BB0007DC10 /* ProfileView.swift in Sources */,

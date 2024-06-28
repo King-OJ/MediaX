@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsModal: View {
     
+    @EnvironmentObject var baseViewModel: BaseViewModel
     @Environment(\.dismiss) var dismiss
     
     private var settings: [Setting] = [
@@ -78,7 +79,7 @@ struct SettingsModal: View {
                     Spacer()
                    
                     Button(action: {
-                        //
+                        baseViewModel.userFlow = .authentication
                     }, label: {
                         HStack(content: {
                             
@@ -92,7 +93,7 @@ struct SettingsModal: View {
                         .fontWeight(.bold)
                         
                         .frame(maxWidth: .infinity)
-                        .frame(height: 60)
+                        .frame(height: 54)
                         .background {
                             Color("primary500")
                         }

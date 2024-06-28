@@ -7,31 +7,45 @@
 
 import SwiftUI
 
-enum ActionType {
-    case login
-    case signUp
-}
 
 struct AuthView: View {
-    var actionType: ActionType
-    
-    @EnvironmentObject var authViewModel: AuthModel
+//    var actionType: ActionType
+    @StateObject var authViewModel = AuthModel()
     
     var body: some View { 
-        if actionType == .signUp {
-            SignUpView()
-                .environment(authViewModel)
-                
-        }
-        else
-        {
-            if authViewModel.userSession != nil {
-                SignInView()
+       
+//        if actionType == .signUp {
+//            if authViewModel.authState == .signedIn {
+//                MainTab()
+//            }
+//            else {
+//                SignUpView()
+//                    .environment(authViewModel)
+//            }
+//                
+//        }
+//        else
+//        {
+//            if authViewModel.authState == .signedIn {
+//                MainTab()
+//            }
+//            else {
+//                SignInView()
+//                    .environment(authViewModel)
+//            }
+//            
+//        }
+        
+        NavigationStack{
+            if authViewModel.userState == .newUser {
+                SignUpView()
                     .environment(authViewModel)
             }
             else {
-                MainTab()
+                SignInView()
+                    .environment(authViewModel)
             }
+            
             
         }
         
@@ -40,6 +54,5 @@ struct AuthView: View {
 }
 
 #Preview {
-    AuthView(actionType: .login)
-        .environment(AuthModel())
+    AuthView()
 }

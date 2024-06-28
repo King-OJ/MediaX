@@ -15,7 +15,7 @@ struct PostView: View {
             //post title
             HStack {
                 HStack {
-                    RoundedImgContainer(img: post.postedBy.profileImgUrl)
+                    RoundedImgContainer(img: post.postedBy.profileImgUrl, padding: 2)
                         .frame(width: 40, height: 40)
                     
                     VStack(alignment: .leading, spacing: 4) {

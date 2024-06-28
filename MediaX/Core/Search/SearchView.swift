@@ -9,7 +9,19 @@ import SwiftUI
 
 struct SearchView: View {
     var body: some View {
-        Text("Search View")
+     
+            Text("Search View")
+                .toolbar(content: {
+                    ToolbarItem(placement: .topBarTrailing) {
+                       
+                            Image(systemName: "gear")
+                       
+                        .foregroundStyle(.black)
+                       
+                        
+                    }
+                })
+                
     }
 }
 
