@@ -53,14 +53,18 @@ struct SignInView: View {
                         
                         //actions button
                         VStack(spacing: 14, content: {
-                            CTAbutton(text: "Login Account", icon: "arrow.right", type: .actionBtn, action: {
-                                    authViewModel.loginUser()
+                            Button {
+                                authViewModel.loginUser()
+                            } label: {
+                                CTAbutton(text: "Login Account", icon: "arrow.right"
+                                )
+                                .background {
+                                    Color("primary500")
                                 }
-                            )
-                            .background {
-                                Color("primary500")
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
                             }
-                            .clipShape(RoundedRectangle(cornerRadius: 6))
+
+                           
                             
                             HStack {
                                 Text("Don't have an account yet?")
@@ -81,7 +85,7 @@ struct SignInView: View {
                             }
                             .font(.subheadline)
                             
-                        }).padding(.bottom)
+                        }).padding(.vertical)
                         
                         Spacer()
                         
@@ -104,7 +108,7 @@ struct SignInView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 40)
-                    .frame(maxWidth: .infinity, maxHeight: 700)
+                    .frame(minWidth: 350, maxWidth: .infinity, minHeight: 600, maxHeight: 800)
                     .background(.white)
                     .clipShape(.rect(topLeadingRadius: 50, topTrailingRadius: 50, style: .continuous)
                     )

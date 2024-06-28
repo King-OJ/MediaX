@@ -15,23 +15,10 @@ private enum Tabs: Hashable {
     case profile
 }
 
-extension Binding {
-func onUpdate(_ closure: @escaping () -> Void) -> Binding<Value> {
-    Binding(get: {
-        wrappedValue
-    }, set: { newValue in
-        wrappedValue = newValue
-        closure()
-    })
-}}
+
 
 struct MainTab: View {
-    
-    init() {
-           UITabBar.appearance().unselectedItemTintColor = UIColor.blue
-        }
-    
-    
+ 
     var body: some View {
    
         @State var selectedTab: Tabs = .home
@@ -46,18 +33,12 @@ struct MainTab: View {
                         Label("", systemImage: "house");
                         
                     }
-                    .onAppear(perform: {
-                        selectedTab = .home
-                    })
                     .tag(Tabs.home)
                 
                 MessagesView()
                     .tabItem {
                         Label("Chats", systemImage: "message")
                     }
-                    .onAppear(perform: {
-                        selectedTab = .chats
-                    })
                     .tag(Tabs.chats)
                     
                 
@@ -66,23 +47,18 @@ struct MainTab: View {
                     .tabItem {
                         Label("Search", systemImage: "magnifyingglass")
                     }
-                    .onAppear(perform: {
-                        selectedTab = .search
-                    })
                     .tag(Tabs.search)
                 
                 ProfileView()
                     .tabItem {
                         Label("Profile", systemImage: "person")
                     }
-                    .onAppear(perform: {
-                        selectedTab = .profile
-                    })
                     .tag(Tabs.profile)
             }
             .toolbarBackground(Color("primary500"), for: .tabBar)
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarColorScheme(.dark, for: .tabBar)
+            
             
         }
         .tint(.white)

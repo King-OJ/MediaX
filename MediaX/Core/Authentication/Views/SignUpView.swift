@@ -34,7 +34,7 @@ struct SignUpView: View {
                         //title and subtitle
                         HStack {
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("Welcome")
+                                Text("Welcome!")
                                     .font(.largeTitle)
                                     .fontWeight(.heavy)
                                 
@@ -64,13 +64,18 @@ struct SignUpView: View {
                         
                         //actions button
                         VStack(spacing: 14, content: {
-                            CTAbutton(text: "Create Account", icon: "arrow.right", type: .actionBtn, action: {
+                            Button {
                                 authViewModel.signUpUser()
-                            })
-                            .background {
-                                Color("primary500")
+                            
+                            } label: {
+                                CTAbutton(text: "Create Account", icon: "arrow.right")
+                                .background {
+                                    Color("primary500")
+                                }
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
                             }
-                            .clipShape(RoundedRectangle(cornerRadius: 6))
+
+                           
                             
                             HStack {
                                 Text("Already have an account?")
@@ -84,7 +89,7 @@ struct SignUpView: View {
                                
                             }
                             .font(.subheadline)
-                        }).padding(.bottom)
+                        }).padding(.vertical)
                         
                         Spacer()
                         
@@ -96,7 +101,7 @@ struct SignUpView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 40)
-                    .frame(maxWidth: .infinity, maxHeight: 750)
+                    .frame(minWidth: 350, maxWidth: .infinity, minHeight: 600, maxHeight: 800)
                     .background(.white)
                     .clipShape(.rect(topLeadingRadius: 30, topTrailingRadius: 30, style: .continuous)
                     )

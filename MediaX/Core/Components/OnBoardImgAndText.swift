@@ -15,16 +15,17 @@ struct OnBoardImgAndText: View {
     var text: String
     
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
+        ZStack(alignment: .bottom) {
             ZStack(alignment: .topTrailing) {
                 Image(image)
                     .resizable()
-                    .frame(width:400, height: 700)
                     .scaledToFill()
+                    .frame(minWidth:0, maxWidth: .infinity, minHeight: 0,maxHeight: .infinity)
                     .overlay {
                         Color(.black)
                             .opacity(0.3)
-                }
+                    }
+                   
                
                 if index != 2 {
                     Button(action: {
@@ -35,21 +36,23 @@ struct OnBoardImgAndText: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
                     .padding(.trailing,30)
-                    .padding(.top, 40)
+                    .padding(.top, 60)
                     
                 }
             }
             
             Text(text)
-                .frame(maxWidth: 400, alignment: .leading)
+                .padding(.horizontal)
+                .padding(.bottom, 60)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundStyle(.white)
-                .padding(.bottom, 60)
-                .padding(.horizontal)
+                .frame(maxWidth: 400, alignment: .leading)
+                
             
             
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .clipShape(RoundedRectangle(cornerRadius:30))
         
     }

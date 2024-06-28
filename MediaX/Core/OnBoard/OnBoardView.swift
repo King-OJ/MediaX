@@ -28,13 +28,13 @@ struct OnBoardView: View {
                         tab in
                         OnBoardImgAndText(index: $index, authViewModel: authViewModel, image: tab.image, text: tab.text)
                             .tag(index)
-                            .ignoresSafeArea()
+                            .ignoresSafeArea(.container, edges: .top)
                     }
                     
                 }
                 .tabViewStyle(.page)
                 .padding(.bottom)
-                .ignoresSafeArea()
+                .ignoresSafeArea(.container, edges: .top)
                 
               
                 //next buttons
@@ -43,11 +43,11 @@ struct OnBoardView: View {
                         HStack(spacing: 10, content: {
                             
                             NavigationLink {
-                                SignUpView()
+                                AuthView(actionType: .signUp)
                                     .environmentObject(authViewModel)
                                     .navigationBarBackButtonHidden()
                             } label: {
-                                CTAbutton(text: "Create Account", type: .navBtn)
+                                CTAbutton(text: "Create Account")
                                 .frame(maxWidth: screenWidth/2)
                                 .background{
                                     Color("primary500")
@@ -56,11 +56,11 @@ struct OnBoardView: View {
                             }
 
                             NavigationLink {
-                                SignInView()
+                                AuthView(actionType: .login)
                                     .environmentObject(authViewModel)
                                     .navigationBarBackButtonHidden()
                             } label: {
-                                CTAbutton(text: "Log In", type: .navBtn)
+                                CTAbutton(text: "Log In")
                                 .frame(maxWidth: screenWidth/2)
                                 .background{
                                     Color("primary500")
@@ -79,7 +79,7 @@ struct OnBoardView: View {
                                 index += 1;
                             }
                         }, label: {
-                            CTAbutton(text: "Next", icon: "arrow.right", type: .actionBtn)
+                            CTAbutton(text: "Next", icon: "arrow.right")
                         })
                         .background{
                             Color("primary500")
@@ -92,9 +92,6 @@ struct OnBoardView: View {
                 }
                 .foregroundStyle(.white)
                 .padding()
-                
-                
-                
                 
             }
             .background(.white)
