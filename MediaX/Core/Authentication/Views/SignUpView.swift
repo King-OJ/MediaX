@@ -27,7 +27,7 @@ struct SignUpView: View {
                 VStack {
                     Spacer()
                     
-                    VStack() {
+                    VStack{
                         
                         //title and subtitle
                         HStack {
@@ -47,25 +47,25 @@ struct SignUpView: View {
                         //input container
                         VStack(spacing: 20, content: {
                             
-                            FloatingTextField(placeHolderText: "Name",inputType: .name,icon:"person", value: name)
+                            FloatingTextField(placeHolderText: "Name",inputType: .name,icon:"person", value: $name)
                             
-                            FloatingTextField(placeHolderText: "Username",inputType: .username, icon:"person.circle", value: username)
+                            FloatingTextField(placeHolderText: "Username",inputType: .username, icon:"person.circle", value: $username)
                             
-                            FloatingTextField(placeHolderText: "Email",inputType: .email, icon:"envelope", value: email)
+                            FloatingTextField(placeHolderText: "Email",inputType: .email, icon:"envelope", value: $email)
                             
                             
-                            FloatingTextField(placeHolderText: "Password",inputType: .password, icon:"lock", value: password)
+                            FloatingTextField(placeHolderText: "Password",inputType: .password, icon:"lock", value: $password)
                             
                          
                         })
-                        .padding(.vertical)
+                        .padding(.top)
                         
                         //actions button
-                        VStack(spacing: 14, content: {
+                        VStack(spacing: 12, content: {
                             Button {
-                                baseViewModel.userFlow = .mainTab
+                                baseViewModel.userFlow = .mainTab;
                             } label: {
-                                CTAbutton(text: "Create Account", icon: "arrow.right")
+                                CTAbutton(text: "SIGN UP", icon: "arrow.right")
                                 .background {
                                     Color("primary500")
                                 }
@@ -111,7 +111,7 @@ struct SignUpView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 40)
-                    .frame(minWidth: 350, maxWidth: .infinity, minHeight: 600, maxHeight: 700)
+                    .frame(minWidth: 350, maxWidth: .infinity, minHeight: 600, maxHeight: 750)
                     .background(.white)
                     .clipShape(.rect(topLeadingRadius: 30, topTrailingRadius: 30, style: .continuous)
                     )

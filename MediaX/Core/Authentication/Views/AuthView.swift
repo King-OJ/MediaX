@@ -13,28 +13,6 @@ struct AuthView: View {
     @StateObject var authViewModel = AuthModel()
     
     var body: some View { 
-       
-//        if actionType == .signUp {
-//            if authViewModel.authState == .signedIn {
-//                MainTab()
-//            }
-//            else {
-//                SignUpView()
-//                    .environment(authViewModel)
-//            }
-//                
-//        }
-//        else
-//        {
-//            if authViewModel.authState == .signedIn {
-//                MainTab()
-//            }
-//            else {
-//                SignInView()
-//                    .environment(authViewModel)
-//            }
-//            
-//        }
         
         NavigationStack{
             if authViewModel.userState == .newUser {

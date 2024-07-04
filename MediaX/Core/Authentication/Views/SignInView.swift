@@ -20,7 +20,7 @@ struct SignInView: View {
             VStack {
                 Spacer()
                 
-                VStack() {
+                VStack{
                     
                     //title and subtitle
                     HStack {
@@ -40,26 +40,33 @@ struct SignInView: View {
                     //input container
                     VStack(spacing: 20, content: {
                         
-                        FloatingTextField(placeHolderText: "Email", inputType: .email, icon: "envelope", value: email)
+                        FloatingTextField(placeHolderText: "Email", inputType: .email, icon: "envelope", value: $email)
                         
                         
-                        FloatingTextField(placeHolderText: "Password",inputType: .password, icon:"lock", value: password)
+                        FloatingTextField(placeHolderText: "Password",inputType: .password, icon:"lock", value: $password)
                         
                     })
-                    .padding(.vertical)
+                    .padding(.top)
                     
                     //actions button
-                    VStack(spacing: 14, content: {
+                    VStack(spacing: 12, content: {
                         Button {
-                            baseViewModel.userFlow = .mainTab
+                            if
+                            baseViewModel.loginUser(email: email, password: password)
+                                != nil {
+                                baseViewModel.userFlow = .mainTab;
+                            }
+                            
                         } label: {
-                            CTAbutton(text: "Login Account", icon: "arrow.right"
+                            CTAbutton(text: "LOGIN", icon: "arrow.right"
                             )
                             .background {
-                                Color("primary500")
+                                Color("primary500").opacity(email.isEmpty || password.isEmpty ? 0.6 : 1.0)
                             }
                             .clipShape(RoundedRectangle(cornerRadius: 6))
                         }
+                        .disabled(email.isEmpty || password.isEmpty)
+                        
 
                        
                         
@@ -120,7 +127,7 @@ struct SignInView: View {
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 40)
-                .frame(minWidth: 350, maxWidth: .infinity, minHeight: 600, maxHeight: 700)
+                .frame(minWidth: 350, maxWidth: .infinity, minHeight: 600, maxHeight: 750)
                 .background(.white)
                 .clipShape(.rect(topLeadingRadius: 50, topTrailingRadius: 50, style: .continuous)
                 )

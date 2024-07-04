@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var baseViewModel = BaseViewModel()
     
     var body: some View {
         BaseView()
-            .environmentObject(baseViewModel)
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(BaseViewModel())
 }

@@ -34,7 +34,7 @@ struct CTAbutton: View {
             .foregroundStyle(.white)
             .font(.title3)
             .fontWeight(.bold)
-            .frame(height: 54)
+            .frame(height: 48)
             
         }
        

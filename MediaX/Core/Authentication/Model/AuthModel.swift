@@ -14,38 +14,37 @@ enum AuthState {
 }
 
 enum UserState {
-    case newUser
-    case oldUser
+    case newUser, oldUser
 }
 
 class AuthModel: ObservableObject, Observable {
-    @Published var user: newUser?
+    @Published var user: User? = nil
     @Published var authState: AuthState = .signedOut
     @Published var userState: UserState = .oldUser
     @Published var userSession: String? = nil
     
-//    init(user: User? = nil, authState: AuthState, userState: UserState, userSession: String? = nil) {
-//        self.user = .init(fullname: "Clement", email: "clem@gmail.com", password: "1234")
-//        self.authState = .signedOut
-//        self.userState = .oldUser
-//        self.userSession = nil
+//    init(user: User? = nil) {
+//        self.user = .init(fullname: "Winning Baby", username: "SurePlug", occupation: "Dancer", bio: "Fine Guy", profileImgUrl: "profile-img3", followers: 10, following: 500)
+//      
 //    }
+    
+    func loginUser(){
+        self.user = .init(fullname: "Winning Baby", username: "SurePlug", occupation: "Dancer", bio: "Fine Guy", profileImgUrl: "profile-img3", followers: 10, following: 500)
+    }
+    
+    func loginOut(){
+        self.user = nil
+    }
+    
+    func signUpUser(){
+        self.user = .init(fullname: "Winning Baby", username: "SurePlug", occupation: "Dancer", bio: "Fine Guy", profileImgUrl: "profile-img3", followers: 10, following: 500)
+    }
     
     func oldUserUI(){
         print("old user")
         self.userState = .oldUser
     }
     
-    func loginUser(){
-        print("login user")
-        self.authState = .signedIn
-    }
-    
-    
-    func signUpUser(){
-        print("SignUp user")
-        self.authState = .signedIn
-    }
 }
 
 struct newUser: Identifiable {

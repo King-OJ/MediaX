@@ -21,7 +21,7 @@ struct FloatingTextField: View {
     var inputType: InputFields
     var icon: String?
     
-    @State var value: String
+    @Binding var value: String
     
     @FocusState private var focusedField: InputFields?
     
@@ -52,9 +52,9 @@ struct FloatingTextField: View {
                     
                     Text(placeHolderText)
                         .offset(x: value.isEmpty ?
-                                    (focusedField == inputType ? -10 : 0)
+                                    (focusedField == inputType ? -14 : 0)
                                 :
-                                    (focusedField == inputType ? -10 : -10)
+                                    (focusedField == inputType ? -14 : -14)
                                 ,
                                 y: value.isEmpty ?
                                     (focusedField == inputType ? -30 : 0)
@@ -76,9 +76,11 @@ struct FloatingTextField: View {
             }
             
             else {
-                TextField("", text: $value) .padding(.top, 6)
-                    .padding(.leading, 30)
+                TextField("", text: $value)
                     .padding()
+                    .padding(.top, 6)
+                    .padding(.leading, 35)
+                    
                     .overlay(content: {
                         RoundedRectangle(cornerRadius: 6)
                             .stroke(focusedField == inputType ? Color("primary500")
@@ -128,5 +130,5 @@ struct FloatingTextField: View {
 }
 
 #Preview {
-    FloatingTextField(placeHolderText: "Email", inputType: .email , icon:"envelope" , value: "")
+    FloatingTextField(placeHolderText: "Email", inputType: .email , icon:"envelope" , value: .constant(""))
 }

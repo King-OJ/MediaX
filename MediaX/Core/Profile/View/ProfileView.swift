@@ -10,12 +10,23 @@ import Flow
 
 
 struct ProfileView: View {
+    
+    
+    
     @State private var gridLayout: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     @State private var showSettingsModals = false
+    
+    @Binding var currentTab: MainTab.Tabs
+    
+    @EnvironmentObject var baseViewModel : BaseViewModel
     
     var profileImgs = (2...6).map { count in
         Photo(name: "profile-img\(count)")
     }
+    
+    var user : User?
+    
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         
@@ -24,41 +35,21 @@ struct ProfileView: View {
             ScrollView {
                     VStack(spacing: 20) {
                         //profile img and names
-                        HStack(spacing: 10) {
-                            RoundedImgContainer(img: "profile-img", padding: 6)
+                        VStack {
+                            RoundedImgContainer(img: user?.profileImgUrl ?? "profile-img", padding: 6)
                                 .frame(width: 90, height: 90)
                             
-                            VStack(alignment: .leading, spacing: 6) {
-                                Text("Clement Ojigs")
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                                
-                                Text("@Fashion Designer")
-                                    .font(.subheadline)
-                                    .foregroundStyle(Color(.systemGray))
-                                    .fontWeight(.semibold)
-                                
-                                Button(action: {
-                                    print("edit")
-                                }, label: {
-                                    Text("Edit")
-                                        .fontWeight(.bold)
-                                        .font(.headline)
-                                })
-                                .foregroundColor(.white)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 18)
-                                .background(Color("primary500"))
-                                .clipShape(RoundedRectangle(cornerRadius: 30))
-                            }
+                            Text("@\(user?.username ?? "your username")")
+                                .fontWeight(.semibold)
+                                .font(.callout)
                             
-                            Spacer()
                         }
+                       
                         
                         //profile statistics
-                        HStack(spacing: 30, content: {
+                        HStack(spacing: 20, content: {
                             VStack {
-                                Text("256")
+                                Text(String(user?.following ?? 10))
                                     .fontWeight(.bold)
                                 Text("Following")
                                     .font(.callout)
@@ -70,7 +61,7 @@ struct ProfileView: View {
                                 .background(Color(.systemGray))
                             
                             VStack {
-                                Text("45K")
+                                Text(String(user?.followers ?? 10))
                                     .fontWeight(.bold)
                                 Text("Followers")
                                     .font(.callout)
@@ -90,19 +81,75 @@ struct ProfileView: View {
                             }
                         })
                         
-                        //profile small images
-                        
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                
-                                LazyHStack(content: {
-                                    ForEach(profileImgs.indices, id: \.self) { index in
-                                        RoundedImg(imgUrl: profileImgs[index].name)
-                                            .frame(width: 54, height: 54)
+                        //profile action buttons and bio
+                        VStack(spacing: 10) {
+                            
+                            HStack {
+                                if let user = user, let loggedInUser = baseViewModel.user {
+                                    
+                                    if user.id == loggedInUser.id {
+                                        Button(action: {
+                                            print("edit")
+                                        }, label: {
+                                            Text("Edit")
+                                                .fontWeight(.bold)
+                                                .font(.headline)
+                                        })
+                                        .foregroundColor(.white)
+                                        .padding(.vertical, 10)
+                                        .padding(.horizontal, 15)
+                                        .background(Color("primary500"))
+                                        .cornerRadius(10)
                                     }
-                                })
-                                .frame( width: 350, alignment: .center)
+                                    
+                                    else {
+                                        Button(action: {
+                                            print("follow")
+                                        }, label: {
+                                            Text("Follow")
+                                                .fontWeight(.bold)
+                                                .font(.headline)
+                                        })
+                                        .foregroundColor(.white)
+                                        .padding(.vertical, 10)
+                                        .padding(.horizontal, 15)
+                                        .background(Color("primary500"))
+                                        .cornerRadius(10)
+                                        
+                                        Button(action: {
+                                            print("message")
+                                        }, label: {
+                                            Image(systemName: "message")
+                                        })
+                                        .padding(10)
+                                        .background(Color("primary500"))
+                                        .foregroundStyle(.white)
+                                        .clipShape(Circle())
+                                    }
+                                        
+                                        
+                                    }
                                 
-                            }.frame(width: 350)
+                                }
+                            
+                            Text(user?.bio ?? "My Bio")
+                                .font(.caption)
+                                .multilineTextAlignment(.center)
+                            
+                        }
+                        
+                        //profile small images
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            
+                            LazyHStack(content: {
+                                ForEach(profileImgs.indices, id: \.self) { index in
+                                    RoundedImg(imgUrl: profileImgs[index].name)
+                                        .frame(width: 54, height: 54)
+                                }
+                            })
+                            .frame( width: 350, alignment: .center)
+                            
+                        }.frame(width: 350)
               
                         //image grid buttons
                         HStack(content: {
@@ -154,21 +201,68 @@ struct ProfileView: View {
               
                     }
                     .padding(.horizontal)
+                   
+                
             }
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        showSettingsModals.toggle()
-                    }, label: {
-                        Image(systemName: "gear")
-                    })
-                    .foregroundStyle(.black)
-                    .fullScreenCover(isPresented: $showSettingsModals) {
-                               SettingsModal()
-                            }
+                    if let user = user, let loggedInUser = baseViewModel.user
+                    {
+                        if user.id == loggedInUser.id {
+                            Button(action: {
+                                showSettingsModals.toggle()
+                            }, label: {
+                                Image(systemName: "line.3.horizontal")
+                                    .fontWeight(.semibold)
+                                    .font(.headline)
+                            })
+                            .foregroundStyle(.black)
+                            .sheet(isPresented: $showSettingsModals) {
+                                       ProfileModal()
+                                    .presentationDetents([.height(200)])
+                                    }
+                        }
+                        else {
+                            Button(action: {
+                                showSettingsModals.toggle()
+                            }, label: {
+                                Image(systemName: "arrowshape.turn.up.right")
+                                    .fontWeight(.semibold)
+                                    .font(.headline)
+                            })
+                            .foregroundStyle(.black)
+                            
+                        }
+                    }
+                    
                     
                 }
+                
+                ToolbarItem(placement: .principal) {
+                    Text(user?.fullname ?? "Your name" )
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                    
+                }
+                
+                if currentTab != .profile {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(action: {
+                            dismiss();
+                        }, label: {
+                           Image(systemName: "chevron.left")
+                                .fontWeight(.semibold)
+                            
+                        }).foregroundStyle(.black)
+                       
+                            
+                    }
+                }
+                
             })
+            
+            
             
             
         }
@@ -177,7 +271,9 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(currentTab: MainTab().$selectedTab, user: BaseViewModel().user)
+        .environmentObject(BaseViewModel())
+   
 }
 
 struct RoundedImg: View {

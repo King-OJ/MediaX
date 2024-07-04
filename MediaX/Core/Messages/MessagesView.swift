@@ -11,9 +11,12 @@ struct MessagesView: View {
     
     
     var body: some View {
-        VStack {
-            Text("Messages View")
-        }
+        
+            VStack {
+                Text("Messages View")
+                
+            }
+        
         
     }
         

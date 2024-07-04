@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SplashView: View {
     @EnvironmentObject var baseViewModel: BaseViewModel
+    
     var body: some View {
         
         ZStack(alignment: .bottom) {
