@@ -12,7 +12,7 @@ struct SettingsAndPrivacyView: View {
     @EnvironmentObject var baseViewModel: BaseViewModel
     @Environment(\.dismiss) var dismiss
     
-    private var settings: [Setting] = [
+    var settings: [Setting] = [
         .init(sectionTitle: "Account", sections: [.init(title: "Account", icon: "person.fill"),.init(title: "Privacy", icon: "lock.fill"), .init(title: "Share profile", icon: "arrowshape.turn.up.right.fill")]),
         .init(sectionTitle: "Login", sections: [
             .init(title: "Switch Account", icon: "arrow.triangle.2.circlepath.circle.fill"),
@@ -24,33 +24,81 @@ struct SettingsAndPrivacyView: View {
         NavigationStack {
             List(settings, id: \.self){
                 setting in
-                Section(setting.sectionTitle) {
-                    ForEach(setting.sections) { section in
-                       
-                        NavigationLink {
-                            //
-                        } label: {
-                            HStack(spacing: 10,content: {
-                                Image(systemName: section.icon)
-                                    .foregroundStyle(Color(.systemGray))
-                                Text(section.title)
-                                    .fontWeight(.semibold)
-                            })
+                if setting.sectionTitle == "Login" {
+                    Section(setting.sectionTitle) {
+                        ForEach(Array(setting.sections.enumerated()), id: \.offset) { index, section in
                            
+                            if index == setting.sections.count - 1 {
+                                
+                                Button {
+                                    if baseViewModel.loginOut() == nil {
+                                        withAnimation {
+                                            baseViewModel.userFlow = .authentication
+                                        }
+                                    }
+                                } label: {
+                                    HStack(spacing: 10,content: {
+                                        Image(systemName: section.icon)
+                                            .foregroundStyle(Color(.systemGray))
+                                        Text(section.title)
+                                            .fontWeight(.semibold)
+                                    })
+                                }.foregroundStyle(.black)
+                                
+
+                            }
+                            else {
+                                NavigationLink {
+                                    //
+                                } label: {
+                                    HStack(spacing: 10,content: {
+                                        Image(systemName: section.icon)
+                                            .foregroundStyle(Color(.systemGray))
+                                        Text(section.title)
+                                            .fontWeight(.semibold)
+                                    })
+                                   
+                                }
+                            }
+                            
+                            
+                            
+
+                        }
+                    }
+                    .listRowSeparator(.hidden)
+                }
+                else {
+                    Section(setting.sectionTitle) {
+                        ForEach(setting.sections) {
+                            section in
+                            NavigationLink {
+                                //
+                            } label: {
+                                HStack(spacing: 10,content: {
+                                    Image(systemName: section.icon)
+                                        .foregroundStyle(Color(.systemGray))
+                                    Text(section.title)
+                                        .fontWeight(.semibold)
+                                })
+                                
+                            }
+                            
+                            
+                            
+                            
+
                         }
                         
-                        
-
                     }
-                    
-                    
+                    .listRowSeparator(.hidden)
                 }
-                .listRowSeparator(.hidden)
+                
                     
                        
                     
                  
-                }
+            }
             .navigationTitle("Settings and Privacy")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -66,6 +114,7 @@ struct SettingsAndPrivacyView: View {
                 }
             }
         }
+       
     }
 }
 

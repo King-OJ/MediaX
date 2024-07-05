@@ -18,7 +18,6 @@ struct SignInView: View {
     var body: some View {
        
             VStack {
-                Spacer()
                 
                 VStack{
                     
@@ -127,12 +126,12 @@ struct SignInView: View {
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 40)
-                .frame(minWidth: 350, maxWidth: .infinity, minHeight: 600, maxHeight: 750)
                 .background(.white)
                 .clipShape(.rect(topLeadingRadius: 50, topTrailingRadius: 50, style: .continuous)
                 )
                 
             }
+            .padding(.top, 150)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Login Account")
@@ -155,7 +154,6 @@ struct SignInView: View {
                 }
                 
             }
-            .frame(maxWidth:.infinity)
             .background {
                 Color("primary500")
             }

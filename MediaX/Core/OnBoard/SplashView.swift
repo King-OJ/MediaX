@@ -12,10 +12,11 @@ struct SplashView: View {
     
     var body: some View {
         
-        ZStack(alignment: .bottom) {
+        ZStack() {
             Image("Bg image")
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
+                
    
             VStack {
                 Image("Logo Mark")
@@ -27,7 +28,7 @@ struct SplashView: View {
                 Text("MEDIA X")
                     .foregroundStyle(.white)
             }
-            .frame(maxHeight: 400)
+            .frame(maxHeight: 150)
             .padding(.bottom, 100)
                 
                 

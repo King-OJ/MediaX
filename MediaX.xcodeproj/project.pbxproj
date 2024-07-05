@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		530111C02C34BD31003B1AC8 /* ProfileModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530111BF2C34BD31003B1AC8 /* ProfileModal.swift */; };
+		530111C02C34BD31003B1AC8 /* ProfileOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530111BF2C34BD31003B1AC8 /* ProfileOptions.swift */; };
 		530387CB2C1A3C1200415079 /* MediaXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530387CA2C1A3C1200415079 /* MediaXApp.swift */; };
 		530387CD2C1A3C1200415079 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530387CC2C1A3C1200415079 /* ContentView.swift */; };
 		530387CF2C1A3C1400415079 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 530387CE2C1A3C1400415079 /* Assets.xcassets */; };
@@ -42,7 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		530111BF2C34BD31003B1AC8 /* ProfileModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModal.swift; sourceTree = "<group>"; };
+		530111BF2C34BD31003B1AC8 /* ProfileOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOptions.swift; sourceTree = "<group>"; };
 		530387C72C1A3C1100415079 /* MediaX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		530387CA2C1A3C1200415079 /* MediaXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaXApp.swift; sourceTree = "<group>"; };
 		530387CC2C1A3C1200415079 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -321,7 +321,7 @@
 			children = (
 				53319ABB2C1CB4BB0007DC10 /* ProfileView.swift */,
 				5368FD712C2E0B18004A81A9 /* SettingsAndPrivacyView.swift */,
-				530111BF2C34BD31003B1AC8 /* ProfileModal.swift */,
+				530111BF2C34BD31003B1AC8 /* ProfileOptions.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -413,7 +413,7 @@
 				53231F7E2C1C07B3006B5833 /* SignInView.swift in Sources */,
 				53166C662C33811200BB95C1 /* Extensions.swift in Sources */,
 				53360C272C2F1E34003CAC8A /* BaseView.swift in Sources */,
-				530111C02C34BD31003B1AC8 /* ProfileModal.swift in Sources */,
+				530111C02C34BD31003B1AC8 /* ProfileOptions.swift in Sources */,
 				53449E0B2C1F64AC00F666C5 /* UserModel.swift in Sources */,
 				53449E072C1F636300F666C5 /* PostModel.swift in Sources */,
 				530387E12C1A512D00415079 /* OnBoardView.swift in Sources */,

@@ -52,7 +52,13 @@ struct OnBoardImgAndText: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .clipShape(RoundedRectangle(cornerRadius:30))
+        .clipShape(.rect(
+            topLeadingRadius: 10,
+            bottomLeadingRadius: 30,
+            bottomTrailingRadius: 30,
+            topTrailingRadius: 10
+        ))
+        
         
     }
 }

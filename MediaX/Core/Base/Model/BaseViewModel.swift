@@ -25,6 +25,11 @@ class BaseViewModel: ObservableObject, Observable {
         self.user = .init(fullname: "Winning Baby", username: "SurePlug", occupation: "Dancer", bio: "Fine Guy", profileImgUrl: "profile-img3", followers: 10, following: 500)
         return user;
     }
+    
+    func loginOut() -> User? {
+        self.user = nil
+        return user;
+    }
 
     
     enum UserFlow {

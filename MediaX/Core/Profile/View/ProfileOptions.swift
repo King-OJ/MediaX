@@ -1,5 +1,5 @@
 //
-//  ProfileModal.swift
+//  ProfileOptions.swift
 //  MediaX
 //
 //  Created by King OJ on 02/07/2024.
@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-struct ProfileModal: View {
+struct ProfileOptions: View {
     
-    let options: [profileOptions] = [.init(title: "My QR Code", icon: "square.and.at.rectangle"), .init(title: "Settings and Privacy", icon: "gear")]
+    var option: profileOptions
+    
     
     var body: some View {
-        NavigationStack{
-            List(options, id: \.self) { option in
                 
                 NavigationLink {
                     SettingsAndPrivacyView()
@@ -27,22 +26,20 @@ struct ProfileModal: View {
                     )
                     
                 }
-                .alignmentGuide(.listRowSeparatorLeading) { d in
-                    0
-                }
-            }
-            .listStyle(.plain)
-            .listRowSpacing(12)
-            .padding(.vertical)
-        }
+                .foregroundStyle(.black)
+                .padding(.vertical, 6)
+//                .alignmentGuide(.listRowSeparatorLeading) { d in
+//                    0
+//                }
+            
+        
+
+        
     }
 }
 
-struct profileOptions: Hashable {
-    var title: String
-    var icon: String
-}
+
 
 #Preview {
-    ProfileModal()
+    ProfileOptions(option: .init(title: "Settings and Privacy", icon: "gear"))
 }

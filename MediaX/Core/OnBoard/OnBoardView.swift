@@ -97,10 +97,9 @@ struct OnBoardView: View {
                 
             }
             .background(.white)
-            
-            
-            
-        }      
+
+        }
+        
         
                 
     }

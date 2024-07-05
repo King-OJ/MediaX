@@ -25,7 +25,6 @@ struct SignUpView: View {
     
             
                 VStack {
-                    Spacer()
                     
                     VStack{
                         
@@ -111,12 +110,12 @@ struct SignUpView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 40)
-                    .frame(minWidth: 350, maxWidth: .infinity, minHeight: 600, maxHeight: 750)
                     .background(.white)
                     .clipShape(.rect(topLeadingRadius: 30, topTrailingRadius: 30, style: .continuous)
                     )
                     
                 }
+                .padding(.top, 120)
                 .toolbar {
                          ToolbarItem(placement: .principal) {
                              Text("Create Account")
